@@ -9,6 +9,9 @@ docs/doctrees/*
 .project
 .pydevproject
 .directory
+*.css
+*.css.map
+build
 
 # ignore demo attachments that user might have added
 demo/demodesk/media/helpdesk/attachments/*

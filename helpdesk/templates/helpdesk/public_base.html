@@ -43,44 +43,49 @@
 
 </head>
 
-<body id="helpdesk-body">
-
-    <div id='container' class="container">
-        <div id='header' class="row">
-            <h1>{% block h1_title %}{% trans "Helpdesk" %}{% endblock %}</h1>
-            {% include "helpdesk/navigation.html" %}
+<body>
+    {% include "main/header.html" with activenav='helpdesk' %}
+    
+    <div id="helpdesk-body" style="padding-top: 10px;">
+        <div id='container' class="container">
+            <div id='header' class="row">
+{#                <h1>{% block h1_title %}{% trans "Helpdesk" %}{% endblock %}</h1>#}
+                {% include "helpdesk/navigation.html" %}
+            </div>
+    
+            <div id='body' class="row">
+                {% block helpdesk_body %}{% endblock %}
+            </div>
+    
+            <div id='footer' class="row">
+                <div class="col-md-2">{% include "helpdesk/attribution.html" %}</div>
+            </div>
         </div>
-
-        <div id='body' class="row">
-            {% block helpdesk_body %}{% endblock %}
-        </div>
-
-        <div id='footer' class="row">
-            <div class="col-md-2">{% include "helpdesk/attribution.html" %}</div>
-        </div>
+        {% include "helpdesk/debug.html" %}
+    
+        <!-- jQuery -->
+        {% if helpdesk_settings.HELPDESK_USE_CDN %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        {% else %}
+            <script src="{% static 'helpdesk/vendor/jquery/jquery.min.js' %}"></script>
+        {% endif %}
+        <script src='{% static "helpdesk/jquery-ui-1.12.0.min.js" %}'></script>
+    
+        <!-- Bootstrap Core JavaScript -->
+        {% if helpdesk_settings.HELPDESK_USE_CDN %}
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% else %}
+            <script src="{% static 'helpdesk/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        {% endif %}
+    
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="{% static 'helpdesk/vendor/metisMenu/metisMenu.min.js' %}"></script>
+    
+        <!-- Custom Theme JavaScript -->
+        <script src="{% static 'helpdesk/dist/js/sb-admin-2.js' %}"></script>
+    
     </div>
-    {% include "helpdesk/debug.html" %}
-
-    <!-- jQuery -->
-    {% if helpdesk_settings.HELPDESK_USE_CDN %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    {% else %}
-    <script src="{% static 'helpdesk/vendor/jquery/jquery.min.js' %}"></script>
-    {% endif %}
-    <script src='{% static "helpdesk/jquery-ui-1.12.0.min.js" %}'></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    {% if helpdesk_settings.HELPDESK_USE_CDN %}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% else %}
-    <script src="{% static 'helpdesk/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-    {% endif %}
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{% static 'helpdesk/vendor/metisMenu/metisMenu.min.js' %}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static 'helpdesk/dist/js/sb-admin-2.js' %}"></script>
+    
 
 </body>
 </html>
